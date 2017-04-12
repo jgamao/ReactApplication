@@ -1,7 +1,15 @@
 import React from 'react';
 import AwesomeComponent from './AwesomeComponent.jsx';
-import TableRow from './TableRow.jsx';
+import TableComponent from './TableComponent.jsx';
+import FieldComponent from './FieldComponent.jsx';
 import {render} from 'react-dom';
+
+const style = {
+	table: {
+		width: '100%',
+		border: '1px solid black'
+	}
+}
 
 class App extends React.Component {
  	constructor() {
@@ -19,17 +27,22 @@ class App extends React.Component {
 
    	addStudent(name, age) {
    		var newId = this.state.id + 1;
-    	this.setState({id: newId});
-
+   		const datas = { "id": newId, "fullName": name, "age": age };
       	var myArray = this.state.data;
-      	myArray.push({ "id": newId, "fullName": name, "age": age })
-      	this.setState(myArray)
 
-      	console.log(myArray);
+      	myArray.push(datas)
+
+      	this.setState({id: newId});
+      	this.setState(myArray);
    	};
 
-   	deleteStudent() {
-   		console.log('Student Deleted');
+   	deleteStudent(id) {
+   		// Filter all todos except the one to be removed
+	    const remainder = this.state.data.filter((datas) => {
+	      if(datas.id !== id) return datas;
+	    });
+	    // Update state with filter
+	    this.setState({data: remainder});
    	};
 
    	editStudent() {
@@ -37,25 +50,27 @@ class App extends React.Component {
    	}
 
   	render() {
-  		let name;
-  		let age;
-
     	return (
 	        <div>
-	        	<h2> Add Student </h2>
-	        	<input ref={node => {name = node;}} />
-	        	<input ref={node => {age = node;}} />
-
-	        	<button onClick={() => {this.addStudent(name.value, age.value);
-	        		name.value = '';age.value = '';}}>Add Student</button>
+	        	<h2> Register Student </h2>
+	        	
+	        	<FieldComponent addStudent={this.addStudent} />
 
 	        	<hr/>
 
 	        	<h2> Student List </h2>
 
-	            <table>
+	            <table style={style.table}>
 	               <tbody>
-	                  	{this.state.data.map((person, i) => <TableRow editStudent={this.editStudent}
+		               <tr>
+			      			<td>id</td>
+			      			<td>Name</td>
+			      			<td>Age</td>
+			      			<td></td>
+			      			<td></td>
+			      		</tr>
+
+	                  	{this.state.data.map((person, i) => <TableComponent editStudent={this.editStudent}
 	                  	deleteStudent={this.deleteStudent} key = {i} data = {person} />)}
 	               </tbody>
 	            </table>
