@@ -21,6 +21,7 @@ class App extends React.Component {
       	super();
 		
       	this.state = {
+      		length: 0,
       		id: 0,
          	data: []
       	}
@@ -38,6 +39,7 @@ class App extends React.Component {
 
       	myArray.push(datas)
 
+      	this.setState({length: this.state.data.length});
       	this.setState({id: newId});
       	this.setState(myArray);
    	};
@@ -74,18 +76,8 @@ class App extends React.Component {
 	        	<h2> Student List </h2>
 
 	            <table style={style.table}>
-	               <tbody>
-		               <tr>
-			      			<td>id</td>
-			      			<td>Name</td>
-			      			<td>Age</td>
-			      			<td></td>
-			      			<td style={style.action} onClick={this.deleteAllStudent}>&#x2716;</td>
-			      		</tr>
-
-	                  	{this.state.data.map((person, i) => <TableComponent editStudent={this.editStudent}
-	                  	deleteStudent={this.deleteStudent} key = {i} data = {person} />)}
-	               </tbody>
+                  	<TableComponent editStudent={this.editStudent} deleteAllStudent={this.deleteAllStudent}
+                  	deleteStudent={this.deleteStudent} data = {this.state.data} />
 	            </table>
          	</div>
       	);
