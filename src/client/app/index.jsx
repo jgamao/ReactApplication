@@ -76,8 +76,10 @@ class App extends React.Component {
 	        	<h2> Student List </h2>
 
 	            <table style={style.table}>
-                  	<TableComponent editStudent={this.editStudent} deleteAllStudent={this.deleteAllStudent}
-                  	deleteStudent={this.deleteStudent} data = {this.state.data} />
+                  	<TableComponent editStudent={this.editStudent} 
+                        deleteAllStudent={this.deleteAllStudent}
+                        deleteStudent={this.deleteStudent} 
+                        data = {this.state.data} />
 	            </table>
          	</div>
       	);

@@ -24,7 +24,8 @@ class TableComponent extends React.Component {
 		      			<td>Name</td>
 		      			<td>Age</td>
 		      			<td></td>
-		      			<td style={style.action} onClick={this.props.deleteAllStudent}>&#x2716;</td>
+		      			<td style={style.action} 
+		      				onClick={this.props.deleteAllStudent}>&#x2716;</td>
 		      		</tr>
 
 		      		{
@@ -33,8 +34,10 @@ class TableComponent extends React.Component {
 						            <td>{item.id}.</td>
 						            <td>{item.fullName}</td>
 						            <td>{item.age}</td>
-						            <td style={style.action} onClick={() => {editStudent(item.id);}}> &#x270E; </td>
-						            <td style={style.action} onClick={() => {deleteStudent(item.id);}}> &#x2716; </td>
+						            <td style={style.action} 
+						            	onClick={() => {editStudent(item.id);}}> &#x270E; </td>
+						            <td style={style.action} 
+						            	onClick={() => {deleteStudent(item.id);}}> &#x2716; </td>
 						     	</tr>
 				      	})
 		      		}
@@ -44,7 +47,8 @@ class TableComponent extends React.Component {
 
       	return (
       		<tbody>
-      			<tr><td style={style.nodata} colSpan="5">No Data</td></tr>
+      			<tr><td style={style.nodata} 
+      					colSpan="5">No Data</td></tr>
   			</tbody>
   		)
    	}
